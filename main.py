@@ -41,6 +41,9 @@ if macquarie_reports is not None:
     # Create DataFrame
     df = pd.DataFrame(extracted_data)
 
+    # Convert "Date" column to pandas datetime
+    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
+
     # Create a pivot table to arrange data by date and fee type
     pivot_table = df.pivot_table(values='FeeAmount', index='Date', columns='FeeType', aggfunc='sum', fill_value=0)
 
